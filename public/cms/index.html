@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jdsm-cms</title>
+	<link rel="stylesheet" type="text/css" href="module/cms/cms.css">
+</head>
+	<body ms-controller="root">
+		<!-- 导航 s-->
+		<div class="header">
+			<div class="center">
+<!-- 				<span>时间</span>
+				<span>标题</span> -->
+				<spna>机电卖场</spna>
+				<spna>----</spna>
+				<span>后台管理</span>
+				
+			</div>
+		</div>
+		<!-- 导航 e-->
+		<!-- 中间部分 s-->
+		<div class="horCenter">
+			<div class="container">
+				<!-- 左边的导航 s-->
+				<div class="tabBar">
+					<button ms-click="btnClick(0)">用户</button>
+					<button ms-click="btnClick(1)">订单</button>
+					<button ms-click="btnClick(2)">商品</button>
+					<button ms-click="btnClick(3)">评论</button>
+				</div>
+				<!-- 左边的导航 e-->
+				<!-- 右边的列表 s-->
+				<div class="content">
+					<div ms-include-src="userList" ms-visible="index===0"></div>
+					<div ms-include-src="orderList" ms-visible="index===1"></div>
+					<div ms-include-src="productList" ms-visible="index===2"></div>
+					<div ms-include-src="commentList" ms-visible="index===3"></div>
+				</div>
+				<!-- 右边的列表 e-->
+			</div>
+		</div>
+		<!-- 中间部分 e-->
+		<!-- 尾部 s-->
+		<div class="footer">
+			<div class="verCenter">
+				<center><span>© 2015 jdsm.com 版权所有</span></center>
+			</div>
+		</div>
+		<!-- 尾部 e-->
+	<script src="vendor/require/require.js" data-main="cms.js"></script>
+	</body>
+</html>

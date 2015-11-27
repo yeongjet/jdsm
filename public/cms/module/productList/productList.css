@@ -1,0 +1,16 @@
+.productInfo{color:#FFFFFF;}
+.name{float:left;margin:20px;}
+.title{clear:both;margin:20px;}
+.salePrice{float:left;margin:20px;}
+.retailPrice{float:left;margin:20px;}
+.sold{clear:both;margin:20px;}
+.stock{float:left;margin:20px;}
+.type{float:left;margin:20px;}
+.measure{float:left;margin:20px;}
+.fileText{clear:both;margin:20px;}
+.file{margin:20px;}
+.detailText{float:left;margin:20px;}
+.detailTextArea{clear:both;margin:20px;}
+.sublimtBtn{width: 70px;height:30px;margin:10px;background-color: #FFFFFF;outline:none;}
+.backBtn{float:left;width:70px;height:30px;margin:10px;background-color: #FFFFFF;outline:none;}
+.listBtn{float:left;width:60px;height:30px;margin:5px;}

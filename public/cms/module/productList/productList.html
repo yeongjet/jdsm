@@ -1,0 +1,37 @@
+<div ms-controller="productList">
+    <div ms-visible="!isDisplay" >
+      <div ms-widget="smartgrid sgProductList" data-smartgrid-body-height='600'></div>
+        <button class="listBtn" ms-click="add">添加</button>
+        <button class="listBtn" ms-click="detail">详情</button>
+        <button class="listBtn" ms-click="del">删除</button>
+    </div>
+    <div ms-visible="isDisplay" class="productInfo">
+    	<form method="post" action="/product" enctype="multipart/form-data">
+        <div class="name">名称<input name="name"></div>  
+        <div class="title">标题<input name="title"></div>
+        <div class="salePrice">原价<input type="number" name="salePrice"></div>
+        <div class="retailPrice">售价<input type="number" name="retailPrice"></div>
+        <div class="sold">已售<input type="number" name="sold"></div>
+        <div class="stock">库存<input type="number" name="stock"></div>
+        <div class="type">种类<select name="type">
+              <option value="nack">零食</option>
+              <option value="commodity">日用品</option>
+              <option value="digitalProduct">数码产品</option>
+              </select>
+        </div>
+        <div class="measure">单位<select name="measure">
+                <option value="bag">包</option>
+                <option value="box">盒</option>
+                <option value="one">个</option>
+                <option value="one">斤</option>
+             </select>
+        </div>
+        <div class="fileText">图标(160*160,png)</div>
+        <div class="file"><input type="file" name="mainImg"></div>
+        <div class="detailText">文字介绍(最多300字)></div>
+        <div class="detailTextArea"><textarea name="detailText" ></textarea></div>
+        <button class="sublimtBtn" type="sublimt">提交</button>
+        <button class="backBtn" type="button" ms-click="back">返回</button>
+      </form>
+    </div>
+</div>

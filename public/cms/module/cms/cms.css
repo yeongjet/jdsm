@@ -1,0 +1,15 @@
+
+body{margin:0px; padding:0px;font-family: "微软雅黑";background-color: #444444;}
+.header{width: 100%; height:60px;background-color: #AB2619;color:#FFFFFF;}
+.header .center{line-height: 60px;text-align: center;}
+.horCenter{width:960px; height:640px; margin:0 auto;}
+.container{width:100%; height:640px; background-color:#444444;}
+.tabBar{width:160px;height:auto;float: left;}
+.tabBar button:focus{background-color:#AB2619}
+.tabBar button{width:100px;height:60px;margin: 30px;background-color:#444444;border-radius:10%;color:#ffffff;font-family: "微软雅黑";border:#ffffff;font-size: 20px;outline:none;}
+.tabBar button:hover{background-color:#AB2619}
+.tabBar button:visited{background-color:#AB2619;border:#ffffff;}
+.container .content{width:800px;float:left;}
+.footer{width: 100%; height:60px;background-color: #AB2619;position:fixed;bottom:0px;color:#FFFFFF;}
+.footer .verCenter{line-height: 60px;}
+.footer .verCenter span{color:#CCCCCC;font-size: 12px;}
