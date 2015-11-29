@@ -9,9 +9,9 @@ router.route('/user').get(function(req, res) {
 			return showErrMsg(err.errors,res);
 		}
 		if(user[0]) {
-			res.json(user);
+			res.json({code:10000,message:'get user success',data:user});
 		}else {
-			res.send("not found user");
+			res.json({code:10002,message:'user not found'});
 		}
 	});
 });
@@ -24,14 +24,14 @@ router.route('/user/login').post(function(req, res) {
 				return showErrMsg(err.errors,res);
 			}
 			if(user[0]) {
-				return res.json({code:"10000",user:user[0]});
+				return res.json({code:10000,data:user[0]});
 
 			}else {
-				return res.json({code:"10002",message:"not found user reason: wrong username , password or user does't exist"});
+				return res.json({code:10002,message:"not found user reason: wrong username , password or user does't exist"});
 			}
 		});		
 	}else {
-		return res.json({code:"10001",message:"please input username and password"});
+		return res.json({code:10001,message:"please input username and password"});
 	}
 });
 
@@ -42,7 +42,7 @@ router.route('/user').post(function(req, res) {
 		if (err) {
 			return showErrMsg(err.errors,res);
 		}
-		res.json({code:"10000" ,message: 'user added',user:user[0]});
+		res.json({code:10000 ,message:'add user success',data:user});
 	});
 });
 
@@ -59,7 +59,7 @@ router.route('/user/:id').put(function(req, res) {
 			if (err) {
 				return showErrMsg(err.errors,res);
 			}
-			res.json({code:"10000",message: 'user updated' });
+			res.json({code:10000,message: 'update user success',data:user});
 	    });
 	});
 });
@@ -72,7 +72,7 @@ router.route('/user/:id').get(function(req, res) {
 		if (err) {
 			return showErrMsg(err.errors,res);
 		}
-		res.json(user);
+		res.json({code:10000,message: 'get user success',data:user});
 	});
 });
 
@@ -93,9 +93,9 @@ router.route('/user/:id').get(function(req, res) {
 function showErrMsg(errs,res) {
 	var PropertyList='';
 	for(i in errs) {
-		PropertyList=PropertyList+errs[i].message+'\r\n';
+		PropertyList=PropertyList+errs[i].message+'\r';
 	}
-	res.send(PropertyList);
+	res.json({code:10001,message:PropertyList});
 }
 
 module.exports = router;

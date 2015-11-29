@@ -1,23 +1,24 @@
-define(['app','bind','proxy','util'],function(app,bind,proxy,util) {
+define(['app','bind','router','proxy','util'],function(app,bind,router,proxy,util) {
 
 	function init() {
 		util.setText('.orderSubList .totalPrice',proxy.getTotalPrice());
 		bind.click('.confirmPay',function() {
-			var user = proxy.getUserInfo();
-			var orderList = proxy.getOrderSubList();
-			util.checkUserInfo(function {
-				var subData = util.getOrderSubData(user,orderList);
-				proxy.setOrder(JSON.stringify(subData), function(){
-					app.f7.alert('下单成功', '消息', function() {
-						router.fore('orderList');
+			if(proxy.getUserInfo().userInfo) {
+				proxy.setOrder(function(){
+					proxy.updOrderList(proxy.getUserInfo().userInfo._id,function(orderList) {
+						proxy.getOrderData(orderList,function(data) {
+							console.log(data);
+							app.f7.alert('下单成功', '消息', function() {
+								router.fore('orderList');
+							})
+						})
 					})
 				})
-			},function() {
-				router.load('userLogin');
-			})
+			}else {
+				router.fore('userSign');
+			}
 		})
 	}
-
 	return {
 		init:init
 	}

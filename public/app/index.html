@@ -20,20 +20,17 @@
 	<div class="panel panel-left panel-cover theme-white">
 	    <div class="list-block">
 	      <div class="list-group">
-	        <ul>
-	          <a href="module/userInfo/userInfo.html" data-context-name="userInfo">
-	            <li class="item-content list-panel-favorites close-panel item-link account-link">
-	              <div class="item-media"> 
+	          <ul>
+	            <li class="item-content list-panel-favorites close-panel item-link account-link left-user">
+	              <div class="item-media">
 	                <i class="icon panel-left-profile"></i>
 	              </div>
 	              <div class="item-inner">
 	                <div class="item-title">账户</div>
 	              </div>
 	            </li>
-	          </a>
 
-	          <a href="module/orderList/orderList.html" data-context-name="orderList">
-	            <li class="item-content panel-list-favorites close-panel item-link">
+	            <li class="item-content panel-list-favorites close-panel item-link left-order">
 	              <div class="item-media">
 	                <i class="icon panel-left-orders"></i>
 	              </div>
@@ -41,30 +38,24 @@
 	                <div class="item-title">订单</div>
 	              </div>
 	            </li>
-	          </a>
-
-	          <a href="module/message/message.html">
-	            <li class="item-content list-panel-favorites close-panel item-link">
+	            <li class="item-content panel-list-favorites close-panel item-link left-message">
 	              <div class="item-media">
 	                <i class="icon panel-left-messages"></i>
 	              </div>
 	              <div class="item-inner">
-	                <div class="item-title">消息</div>
+	                <div class="item-title">消息</div><!-- icon-prev -->
 	              </div>
 	            </li>
-	          </a>
 
-	          <a href="module/readme/readme.html">
-	            <li class="item-content list-panel-favorites close-panel item-link">
+	            <li class="item-content panel-list-favorites close-panel item-link left-help">
 	              <div class="item-media">
 	                <i class="icon icon-prev"></i>
 	              </div>
 	              <div class="item-inner">
-	                <div class="item-title">帮助</div>
+	                <div class="item-title">&nbsp帮助</div>
 	              </div>
 	            </li>
-	          </a>
-	        </ul>
+	         </ul>
 	      </div>
 	  </div>
 	</div>
@@ -80,7 +71,7 @@
 				    <div class="left">
 				        <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
 				    </div>
-				    <div class="center sliding">Contacts</div>
+				    <div class="center sliding">首页</div>
 				    <div class="right contact-add-link">
 				        <a href="#" class="link icon-only"><i class="icon icon-plus">+</i></a>
 				    </div>
@@ -120,27 +111,6 @@
 						<div class="list-block media-list home-product-list searchbar-found">
 							<div class="list-group">
        							<div id="home-content-wrap"></div>
-					            <script id="home-template" type="text/template7">
-					            <div class="list-block media-list">
-					            	<ul>
-					                  {{#each prodList}}
-					                  <li>
-					                    <a href="module/prodDesc/prodDesc.html" class="item-link" data-context-name="prodList.{{@index}}">
-											<div class="item-content">
-												<div class="item-media"><img src="../{{mainImg}}" width="100"></div>
-												<div class="item-inner">
-													<div class="item-title-row">
-														<div class="item-title">{{name}} ￥{{retailPrice}}</div>
-													</div>
-													<div class="item-subtitle">已售{{sold}}</div>
-												</div>
-											</div>
-					                    </a>
-					                  </li>
-					                  {{/each}}
-					                </ul>
-					              </div>
-					            </script>
 							</div>
 						</div>	
 						<!-- searchbar搜索区 e-->
@@ -200,27 +170,6 @@
 						<div class="list-block media-list cata-product-list searchbar-found">
 							<div class="list-group">
        							<div id="types-content-wrap"></div>
-					            <script id="types-template" type="text/template7">
-					            <div class="list-block media-list">
-					            	<ul>
-					                  {{#each prodList}}
-					                  <li>
-					                    <a href="module/prodDesc/prodDesc.html" class="item-link" data-context-name="prodList.{{@index}}">
-											<div class="item-content">
-												<div class="item-media"><img src="../{{mainImg}}" width="100"></div>
-												<div class="item-inner">
-													<div class="item-title-row">
-														<div class="item-title">{{name}} ￥{{retailPrice}}</div>
-													</div>
-													<div class="item-subtitle">已售{{sold}}</div>
-												</div>
-											</div>
-					                    </a>
-					                  </li>
-					                  {{/each}}
-					                </ul>
-					              </div>
-					            </script>	
 							</div>
 						</div>	
 						<!-- searchbar搜索区 e-->
@@ -249,38 +198,7 @@
 					<div class="page-content">
 						<div id="cart-content-wrap"></div>
 						<!-- 商品列表 -->
-			            <script id="cart-template" type="text/template7">
-						<div class="content-block">
-							{{#if cartList}}	
-						        <div class="list-block media-list">
-						            <ul>
-						            {{#each cartList}}
-						            <div style="display:none">
-						              <div class="productId">{{product._id}}</div>
-						              <div class="RetailPrice">{{product.retailPrice}}</div>
-						              <div class="quantity">{{quantity}}</div>
-						            </div>
-						            <li>
-						              <div class="item-content">
-						                <div class="item-media">
-						                  <img src="../{{product.mainImg}}" width="40"></div>
-						                <div class="item-inner">
-						                  <div class="item-title-row">
-						                    <div class="item-title">{{product.name}} ￥{{product.retailPrice}}</div>
-						                  </div>
-						                  <div class="item-subtitle">购买数量:{{quantity}}</div>
-						                </div>
-						              </div>
-						            </li>
-						            {{/each}}
-						        	</ul>
-						        </div>
-						        <button class="orderSub">提交订单</button>
-					        {{else}}
-					        	<div class="list-block">暂无商品,快去添加吧！</div>
-					        {{/if}}
-					    </div>
-			            </script>
+
 					</div>
 				</div>
 				<!-- page e-->
@@ -306,6 +224,141 @@
 	    <!-- tabbar e-->
 	</div>
 	<!-- views容器e -->
+
+    <script id="home-template" type="text/template7">
+    <div class="list-block media-list">
+    	<ul>
+          {{#each prodList}}
+          <li>
+            <a href="module/prodDesc/prodDesc.html" class="item-link" data-context-name="prodList.{{@index}}">
+				<div class="item-content">
+					<div class="item-media"><img src="../{{mainImg}}" width="80"></div>
+					<div class="item-inner">
+						<div class="item-title-row">
+							<div class="item-title">{{name}} ￥{{retailPrice}}</div>
+						</div>
+						<div class="item-subtitle">已售{{sold}}</div>
+					</div>
+				</div>
+            </a>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </script>
+
+    <script id="types-template" type="text/template7">
+    <div class="list-block media-list">
+    	<ul>
+          {{#each prodList}}
+          <li>
+            <a href="module/prodDesc/prodDesc.html" class="item-link" data-context-name="prodList.{{@index}}">
+				<div class="item-content">
+					<div class="item-media"><img src="../{{mainImg}}" width="80"></div>
+					<div class="item-inner">
+						<div class="item-title-row">
+							<div class="item-title">{{name}} ￥{{retailPrice}}</div>
+						</div>
+						<div class="item-subtitle">已售{{sold}}</div>
+					</div>
+				</div>
+            </a>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </script>	
+
+    <script id="cart-template" type="text/template7">
+	<div class="content-block">
+		{{#if cartList}}	
+	        <div class="list-block media-list">
+	            <ul>
+	            {{#each cartList}}
+	            <div style="display:none">
+	              <div class="productId">{{product._id}}</div>
+	              <div class="RetailPrice">{{product.retailPrice}}</div>
+	              <div class="quantity">{{quantity}}</div>
+	            </div>
+	            <li>
+	              <div class="item-content">
+	                <div class="item-media">
+	                  <img src="../{{product.mainImg}}" width="40"></div>
+	                <div class="item-inner">
+	                  <div class="item-title-row">
+	                    <div class="item-title">{{product.name}} ￥{{product.retailPrice}}</div>
+	                  </div>
+	                  <div class="item-subtitle">购买数量:{{quantity}}</div>
+	                </div>
+	              </div>
+	            </li>
+	            {{/each}}
+	        	</ul>
+	        </div>
+	        <center><div><button class="orderSub">提交订单</button></div></center>
+        {{else}}
+        	<div class="list-block">暂无商品,快去添加吧！</div>
+        {{/if}}
+    </div>
+    </script>
+
+    <script id="orderListTemplate" type="text/template7">
+      {{#if orderList}}
+      <div class="list-block media-list">
+        <ul>
+          {{#each orderList}}
+	       <li>
+            <a href="module/orderDesc/orderDesc.html" class="item-link" data-context-name="orderList.{{@index}}">
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title">订单编号 : {{_id}}</div>
+                  </div>
+                  <div class="item-subtitle">状态 : {{state}}&nbsp&nbsp&nbsp&nbsp下单日期 : {{regDate}}</div>
+                </div>
+              </div>
+            </a>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      {{else}}
+      <div class="list-block">暂无订单,快去下单吧！</div>
+      {{/if}}
+    </script>
+
+    <script id="userInfoTemplate" type="text/template7">
+     <div class="list-block store-data">
+         {{#if this}}
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                                用户名:{{username}}
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                                称呼:{{realname}}
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                                手机号:{{phoneNumber}}
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        {{else}}
+            <div class="content-block">你还没有登陆哦</div>
+        {{/if}}
+    </div>
+    </script>
+
 	<script src="vendor/f7/js/framework7.min.js"></script>
 	<script src="vendor/require/require.js" data-main="app"></script>
 </body>

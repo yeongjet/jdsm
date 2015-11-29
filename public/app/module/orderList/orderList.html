@@ -1,7 +1,8 @@
+
 <div class="navbar">
   <div class="navbar-inner">
     <div class="left sliding">
-      <a href="#" class="back link"> <i class="icon icon-back"></i>
+      <a href="#" class="back link orderListBack"><i class="icon icon-back"></i>
         <span>Back</span>
       </a>
     </div>
@@ -16,28 +17,7 @@
         <div class="pull-to-refresh-arrow"></div>
       </div>
       <div class="content-block">
-        {{#if orderList}}
-        <div class="list-block media-list">
-          <ul>
-            {{#each list}}
-            <li>
-              <a>
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title-row">
-                      <div class="item-title">订单编号 : {{_id}}</div>
-                    </div>
-                    <div class="item-subtitle">状态 : {{state}}&nbsp&nbsp&nbsp&nbsp下单日期 : {{regDate}}</div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            {{/each}}
-          </ul>
-        </div>
-        {{else}}
-        <div class="list-block">暂无订单,快去下单吧！</div>
-        {{/if}}
+        <div id="orderList-content-wrap"></div>
       </div>
     </div>
   </div>

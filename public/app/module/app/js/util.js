@@ -1,23 +1,17 @@
-define(function(app) {
+define(['proxy','require'],function(proxy,require) {
 
 	var $ = Dom7;
 
-	function checkUserInfo(tcb,fcb) {
-		proxy.getUserInfo()? tcb():fcb();
-	}
-
 	function checkQtyField(e,tcb,fcb) {
-		var val = $(e).val();
-		console.log(val);
-		console.log($(e));
+		var val = parseInt($(e).val());
 		(val > 0 && val < 9999) ? tcb(val) : fcb(val);
 	}
 
 	function checkUserSign(data,icb,ucb,ecb) {
 		if(data.username && data.password && data.realname && data.phoneNumber) {
-			ucb(data);
-		}else if(data.username && data.password && !data.realname && !data.phoneNumber){
 			icb(data);
+		}else if(data.username && data.password && !data.realname && !data.phoneNumber){
+			ucb(data);
 		}else {
 			ecb(data);
 		}
@@ -60,27 +54,14 @@ define(function(app) {
 	function getText(e) {
 		return $(e).text();
 	}
-
-	function getOrderSubData(user,orderList) {
-		var subData = {user:user._id, detail:[]};
-		for (var e in orderList) {
-			var item = {
-				product: orderList[e].product._id,
-				quantity: parseInt(orderList[e].quantity)
-			};
-			subData.detail.push(item);
-		}
-		return subData;
-	}
+	
 	return {
 		checkQtyField:checkQtyField,
-		checkUserInfo:checkUserInfo,
 		checkUserSign:checkUserSign,
 		checkResCode:checkResCode,
 		getFieldData:getFieldData,
 		setText:setText,
 		getText:getText,
-		copys:copys,
-		getOrderSubData:getOrderSubData
+		copys:copys
 	}
 })

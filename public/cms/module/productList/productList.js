@@ -31,8 +31,7 @@ define(["smartgrid", "text!./productList.html", "css!./productList.css"], functi
                 type: 'get',
                 cache: false,
             }).done(function(res) {
-                console.log(res);
-                avalon.vmodels.sgProductList.render(res);
+                avalon.vmodels.sgProductList.render(res.data);
             });               
         }
         vm.smartgrid = {

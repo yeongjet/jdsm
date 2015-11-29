@@ -7,7 +7,7 @@ define(["smartgrid","text!./commentList.html","css!./commentList.css"], function
                 type: 'get',
                 cache: false,
             }).done(function(res) {
-                for(var i = 0; i < res.length; i++) {
+                for(var i = 0; i < res.data.length; i++) {
                     var content = res[i].comment.content;
                     var comState = res[i].comment.state;
                     res[i].content = content;

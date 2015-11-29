@@ -9,9 +9,9 @@ router.route('/order').get(function(req, res) {
 			return showErrMsg(err.errors,res);
 		}
 		if(order[0]) {
-			res.json(order);
+			res.json({code:10000,message:"get orders success",data:order});
 		}else {
-			res.send("not found order");
+			res.json({code:10002,message:"order not found"});
 		}
 	});
 });
@@ -23,9 +23,9 @@ router.route('/order/user/:id').get(function(req, res) {
 			return showErrMsg(err.errors,res);
 		}
 		if(order[0]) {
-			res.json(order);
+			res.json({code:10000,message:"get order success",data:order});
 		}else {
-			res.send("not found order");
+			res.json({code:10002,message:"order not found"});
 		}
 	});
 });
@@ -39,7 +39,7 @@ router.route('/order/:id').get(function(req, res) {
 		if (err) {
 			return showErrMsg(err.errors,res);
 		}
-		res.json(order);
+		res.json({code:10000,message:"get order success",data:order});
 	});
 });
 
@@ -60,10 +60,7 @@ router.route('/order').post(function(req, res) {
 		if (err) {
 			return showErrMsg(err.errors,res);
 		}
-		res.json({
-			order:order,
-			message: 'order Added'
-		});
+		res.json({code:10000,message:"add order success",data:order});
 	});
 });
 
@@ -82,11 +79,11 @@ router.route('/order/:id').put(function(req, res) {
 				if (err) {
 					return showErrMsg(err.errors,res);
 				}
-				res.json({ message: 'order state updated!' });
+				res.json({code:10000,message:'order state updated!',data:order});
 		    });
 		});		
 	}else {
-		res.send("only update order state");
+		res.json({code:"10003",message:'only update order state'});
 	}
 
 });
@@ -104,11 +101,11 @@ router.route('/order/:id').post(function(req, res) {
 				if (err) {
 					return showErrMsg(err.errors,res);
 				}
-				res.json({ message: 'order state updated!' });
+				res.json({code:10000, message: 'order state updated!',data:order});
 		    });
 		});		
 	}else {
-		res.send("only update order state");
+		res.json({code:"10003",message:'only update order state'});
 	}
 
 });
@@ -121,7 +118,6 @@ router.route('/order/:id/comment').post(function(req, res) {
 	Order.findOne({
 		_id: req.params.id
 	}, function(err, order) {
-		console.log("SD = "+content+" "+state+" "+date+" "+req.params.id);
 		if (err) {
 			return showErrMsg(err.errors,res);
 		}
@@ -132,7 +128,7 @@ router.route('/order/:id/comment').post(function(req, res) {
 				order.comment.date = Date.now();
 				save();	
 			}else {
-				res.json({message:"you hasn't received!"})
+				res.json({code:"10004", message: "your order wasn't confirmed"});
 			}
 		}//CMS更改评论状态
 		else if(state && !content && !date){
@@ -140,14 +136,14 @@ router.route('/order/:id/comment').post(function(req, res) {
 			order.comment.state = state;
 			save();
 		}else {
-			res.json({message:"permission denied!"})
+			res.json({code:"10003", message: "permission denied"});
 		}
 		function save() {
 		    order.save(function(err) {
 				if (err) {
 					return showErrMsg(err.errors,res);
 				}
-				res.json({ message: 'comment updated!' });
+				res.json({code:10000, message: "add order comment success", data:order});
 		    });			
 		}
 	});
@@ -172,7 +168,7 @@ function showErrMsg(errs,res) {
 	for(i in errs) {
 		PropertyList=PropertyList+errs[i].message+'\r\n';
 	}
-	res.send(PropertyList);
+	res.json({code:10001, message: PropertyList});
 }
 
 module.exports = router;

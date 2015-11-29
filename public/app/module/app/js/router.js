@@ -1,50 +1,63 @@
 define(['app','require'],function(app,require) {
-	//此处循环依赖了 再次注入require获取app模块 否则会得到undefinded的app
+
 	var app;
 
 	function init() {
-		app = require("app");
+		app = require('app');
+	}
+
+	function restart() {
+		for(var i = 0; i < getTab().history.length; i++) {
+			getTab().router.back({animatePages: false});
+		}
 	}
 
 	function back() {
-		getRouter().back();
+		getTab().router.back();
+	}
+
+	function backs() {
+		getTab().router.back({animatePages: false});
 	}
 
 	function refresh(params) {
-		getRouter().refreshPage()
-	}
-	
-	function reload(params) {
-
+		getTab().refreshPage()
 	}
 
-	function fore(params) {
-		getParam(params);
-		var options = {url:"module/"+params.page+"/"+params.page+".html",contextName:params.context}
-		console.log(getRouter())
-		getRouter().load(options)
+	function fore(page) {
+		var options = {url:"module/"+page+"/"+page+".html",contextName:page}
+		getTab().router.load(options)
 	}
-	
-	function getRouter() {
-		var router = {};
-		var tab = app.getTabName();
-		if(tab == "home")
-			router = app.home.router;
-		if(tab == "types")
-			router = app.types.router;
-		if(tab == "cart")
-			router = app.cart.router;
-		return router;
+
+	function fores(page) {
+		var options = {url:"module/"+page+"/"+page+".html",contextName:page,animatePages: false}
+		getTab().router.load(options)
 	}
-	function getParam(params) {
-		var p = {};
+
+	function foret(page) {
+		var options = {template: Template7.templates.orderListTemplate}
+		getTab().router.load(options)
+	}
+
+	function getTab() {
+		var tab;
+		if(app.getTabName() == "home")
+			tab = app.home;
+		if(app.getTabName() == "types")
+			tab = app.types;
+		if(app.getTabName() == "cart")
+			tab = app.cart;
+		return tab;
 	}
 
 	return {
 		init:init,
+		fore:fore,
+		fores:fores,
+		foret:foret,
 		back:back,
-		reload:reload,
+		backs:backs,
 		refresh:refresh,
-		fore:fore
+		restart:restart
 	}
 })

@@ -1,18 +1,19 @@
 require.config({
 	paths: {
+		app:'app',
 		text: "vendor/require/text",
 		css: "vendor/require/css",
-		priority: ['text', 'css'],
+		domReady: "vendor/require/domReady",
+		priority: ['text', 'css','app'],
 		proxy: "module/app/js/proxy",
 		router: "module/app/js/router",
 		bind: "module/app/js/bind",
 		util: "module/app/js/util",
-		app:'app'
 	}
 });
 
 
-define('app',['proxy','router','bind'], function(proxy,router,bind) {
+define('app',['proxy','router','bind','domReady!'], function(proxy,router,bind) {
 
 	var $ = Dom7;
 
@@ -50,6 +51,10 @@ define('app',['proxy','router','bind'], function(proxy,router,bind) {
 
 	$('.searchbar-cancel').css("margin-right", '-54px');
 
+	function getTabName() {
+		return tab;
+	}
+
 	function renderHomePage(data) {
 		var homeTemple = Template7.compile($('#home-template').html());
 		$('#home-content-wrap').html(homeTemple(data));
@@ -65,26 +70,35 @@ define('app',['proxy','router','bind'], function(proxy,router,bind) {
 		$('#cart-content-wrap').html(cartTemple(data));	
 	}
 
-	function getTabName() {
-		return tab;
-	}
-
 	function setBindings() {
+
+		bind.click('.left-user',function() {
+			router.fore('userInfo');
+		})
+
+		bind.click('.left-order',function() {
+			router.fore('orderList');
+		})
+
 		bind.click('.homeTab',function() {
 			tab = "home";
-			console.log(tab)
+			router.restart();
 		})
 
 		bind.click('.typesTab',function() {
 			tab = "types";
-			console.log(tab)
+			router.restart();
 		})
 
 		bind.click('.cartTab',function() {
 			tab = "cart";
-			console.log(tab)
+			router.restart();
 			if(proxy.getCartList()) {
 				renderCartPage(proxy.getCartList());
+				bind.click('#cart .orderSub',function() {
+					proxy.setCartToOrderSubList();
+					router.fore("orderSubList")
+				});	
 				$('.cartNoProd').css('display','none');
 				$('.cartList').css('display','block');
 			}else {
@@ -93,10 +107,7 @@ define('app',['proxy','router','bind'], function(proxy,router,bind) {
 			}
 		})
 
-		bind.click('#cart .orderSub',function() {
-			proxy.setCartToOrderSubList();
-			router.load("orderSubList")
-		});	
+
 		
 		bind.refresh('.types .pull-to-refresh-content',function() {
 			proxy.updProdList(function(prodList) {
@@ -105,13 +116,6 @@ define('app',['proxy','router','bind'], function(proxy,router,bind) {
 			})
 		})
 
-		bind.refresh('.orderList .pull-to-refresh-content',function() {
-			proxy.updOrderList(function() {
-				console.log("updOrderList");
-				router.refreshPage();
-				app.f7.pullToRefreshDone();	
-			})
-		})
 	}
 
 	function init() {
@@ -135,8 +139,6 @@ require(['app','proxy','router'], function(app,proxy,router) {
 
 	var $ = Dom7;
 
-	
-
 	proxy.updProdList(function(e) {
 		app.init();
 		router.init();
@@ -144,7 +146,6 @@ require(['app','proxy','router'], function(app,proxy,router) {
 
 	$(document).on('pageBeforeInit', function(e) {
 		var page = e.detail.page.name;
-		console.log(app.getTabName());
 		require(['module/'+page+"/"+page],function(page) {
 			page.init();
 		})

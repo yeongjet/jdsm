@@ -23,43 +23,6 @@ var app = express();
 var connectionString = 'mongodb://localhost:27017/jdsm';
 mongoose.connect(connectionString);
 
-var http = require("http");
-var url = require("url");
-var crypto = require("crypto");
-
-function sha1(str){
-  var md5sum = crypto.createHash("sha1");
-  md5sum.update(str);
-  str = md5sum.digest("hex");
-  return str;
-}
-
-function validateToken(req,res){
-  var query = url.parse(req.url,true).query;
-  var signature = query.signature;
-  var echostr = query.echostr;
-  var timestamp = query['timestamp'];
-  var nonce = query.nonce;
-  var oriArray = new Array();
-  oriArray[0] = nonce;
-  oriArray[1] = timestamp;
-  oriArray.sort();
-  var original = oriArray.join('');
-  var scyptoString = sha1(original);
-  if(signature == scyptoString){
-    res.end(echostr);
-    console.log("Confirm and send echo back");
-  }else {
-    res.end("false");
-    console.log("Failed!");
-  }
-}
-
-var webSvr = http.createServer(validateToken);
-webSvr.listen(8000,function(){
-  console.log("Start validate");
-});
-
 //使用日志
 app.use(logger('dev'));
 
@@ -78,8 +41,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   res.json({err_code:"404",msg:"bad url request"});
 // });
 
+
 app.post('/wx',function(req,res) {
-	validateToken(req,res);
+	url.parse(req.url,true).query.echostr;
 })
 
 module.exports = app;

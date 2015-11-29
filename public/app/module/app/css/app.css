@@ -3,7 +3,7 @@ body{
   background-color: white;
 }
 
-.panel-left a{color:white;}
+.panel-left .item-title{color:white;}
 .navbar {left: 0;top: 0;color:#FFFFFF;background: #AB2619;}
 .toolbar {left: 0;bottom: 0;background: #AB2619;}
 .panel-left .list-block ul{background-color:black;}
@@ -11,12 +11,12 @@ body{
 
 /*----------首页 s-----------*/
 .home .swiper-container {height: 36%;}
-.home .swiper-slide img{height: 100%;width:auto;}
+.home .swiper-slide img{height: 100%;width:100%;}
 /*----------首页 e-----------*/
 
 
 /*----------购物车 s-----------*/
-.cart .orderSub{float:right;width:100px;margin:20px;height:50px;background:#AB2619;border-radius:5px;color:white;font-size: 14px;font-family: "微软雅黑"}
+.cart .orderSub{width:100px;margin:20px;height:50px;background:#AB2619;border-radius:5px;color:white;font-size: 14px;font-family: "微软雅黑"}
 .cart .totalPrice{color:#AB2619;font-size: 16px;}
 /*----------购物车 e-----------*/
 
@@ -49,3 +49,5 @@ body{
 
 
 .orderList a{color:#9E9EA2;}
+
+.orderDesc .receipt{width:100px;margin:10px;height:50px;background:#AB2619;border-radius:5px;color:white;font-size: 14px;font-family: "微软雅黑"}

@@ -6,7 +6,7 @@
 				<span>Back</span>
 			</a>
         </div>
-        <div class="center sliding contacts-list-header">userInfo</div>
+        <div class="center sliding contacts-list-header">用户信息</div>
         <div class="right contact-edit-link">
             <a href="#" class="link icon-only">
 				<i class="icon ion-compose"></i>
@@ -18,36 +18,7 @@
     <!-- Page, data-page contains page name-->
     <div data-page="userInfo" class="page userInfo">
         <div class="page-content">
-             {{#if this}}
-                 <div class="list-block store-data">
-                    <ul>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-inner">
-                                        用户名:{{username}}
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-inner">
-                                        称呼:{{realname}}
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-inner">
-                                        手机号:{{phoneNumber}}
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            {{else}}
-                <div class="content-block">你还没有登陆哦</div>
-            {{/if}}
-           
+            <div id="userInfo-content-wrap"></div>
         </div>
     </div>
 </div>

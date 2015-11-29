@@ -8,7 +8,7 @@ define(["smartgrid","text!./orderList.html","css!./orderList.css"], function(sm,
                 type: 'get',
                 cache: false,
             }).done(function(res) {
-                avalon.vmodels.sgOrderList.render(res);
+                avalon.vmodels.sgOrderList.render(res.data);
             });               
         }
         vm.selectedId = "";

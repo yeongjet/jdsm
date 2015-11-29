@@ -12,11 +12,10 @@ router.route('/product').get(function(req, res) {
 			return showErrMsg(err.errors,res);
 		}
 		if(product[0]) {
-			res.json(product);
+			res.json({code:"10000",message: 'get product success',data:product});
 		}else {
-			res.send("not found product");
+			res.json({code:"10002",message: 'product not found'});
 		}
-
 	});
 });
 
@@ -54,15 +53,12 @@ router.route('/product').post(function(req, res) {
 		});
 		product.save(function(err) {
 			if (err) {
-				console.log("err");
 				return showErrMsg(err.errors,res);
 			}
 			fs.rename(mainImg.path,imgDir+mainImg.originalFilename,function(err) {
 				if(err) {console.log(err)}//重命名为原文件名
 			});
-			res.json({
-				message: 'Product Added'
-			});
+			res.json({code:"10000",message: 'add product success',data:product});
 		});
 	});	
 
@@ -97,16 +93,13 @@ router.route('/product/:id').put(function(req, res) {
 			}			
 			for (prop in fields) {
 				product[prop] = fields[prop];
-				console.log("product[prop]="+product[prop]+" req.body[prop]="+fields[prop]);
 			}
 			console.log(fields);
 			product.save(function(err) {
 				if (err) {
 					return res.send(err);
 				}
-				res.json({
-					message: 'Product updated!'
-				});
+				res.json({code:"10000",message: 'update product success',data:product});
 			});
 		});	
 	});
@@ -120,8 +113,7 @@ router.route('/product/:id').get(function(req, res) {
 		if (err) {
 			return res.send(err);
 		}
-
-		res.json(product);
+		res.json({code:"10000",message:'get product success',data:product});
 	});
 });
 
@@ -133,18 +125,16 @@ router.route('/product/:id').delete(function(req, res) {
 		if (err) {
 			return res.send(err);
 		}
-		res.json({
-			message: 'Successfully deleted'
-		});
+		res.json({code:"10001",message: 'product delete success'});
 	});
 });
 
 function showErrMsg(errs,res) {
 	var PropertyList='';
 	for(i in errs) {
-		PropertyList=PropertyList+errs[i].message+'\r\n';
+		PropertyList=PropertyList+errs[i].message+'\r';
 	}
-	res.send(PropertyList);
+	res.json({code:"10001", message: PropertyList});
 }
 
 module.exports = router;

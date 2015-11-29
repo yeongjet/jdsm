@@ -8,8 +8,7 @@ define(["smartgrid","text!./userList.html","css!./userList.css"], function(sm,us
                 type: 'get',
                 cache: false,
             }).done(function(res) {
-                console.log(res);
-                avalon.vmodels.sgUserList.render(res);
+                avalon.vmodels.sgUserList.render(res.data);
             });               
         }
         vm.opts = {pageable: true, noResult: "暂无数据",
