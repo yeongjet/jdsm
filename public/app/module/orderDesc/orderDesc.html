@@ -1,0 +1,64 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left sliding">
+      <a href="#" class="back link"> <i class="icon icon-back"></i>
+        <span>Back</span>
+      </a>
+    </div>
+    <div class="center sliding contacts-list-header">订单详情</div>
+  </div>
+</div>
+<div class="pages">
+  <div data-page="orderDesc" class="page orderDesc">
+    <div class="page-content">
+      <div class="content-block">
+        <div class="list-block media-list">
+          <ul>
+          {{#each this.detail}}
+          <li>
+            <div class="item-content">
+            <div class="item-media">
+              <img src="../{{product.mainImg}}" width="40"></div>
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">{{product.name}} ￥{{product.retailPrice}}</div>
+                </div>
+                <div class="item-subtitle">数量{{quantity}}</div>
+              </div>
+            </div>
+          </li>
+          {{/each}}
+          </ul>
+          <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">订单编号</div>
+                </div>
+                <div class="item-subtitle orderId">{{this._id}}</div>
+              </div>
+          </div>
+          <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">下单日期</div>
+                </div>
+                <div class="item-subtitle">{{this.regDate}}</div>
+              </div>
+          </div> 
+          <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">状态</div>
+                </div>
+                <div class="item-subtitle">{{this.state}}</div>
+              </div>
+          </div>
+          <div class="item-content">
+            评论{{this.comment.content}}
+          </div>
+        </div>
+      </div>
+      <center><div><button class="receipt">确认收货</button></div></center>
+    </div>
+  </div>
+</div>
