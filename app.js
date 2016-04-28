@@ -20,7 +20,7 @@ var order = require('./routes/order');
 var app = express(); 
 
 //连接mongodb
-var connectionString = 'mongodb://localhost:27017/jdsm';
+var connectionString = 'mongodb://localhost:27017/books';
 mongoose.connect(connectionString);
 
 //使用日志
