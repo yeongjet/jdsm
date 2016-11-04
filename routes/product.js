@@ -29,7 +29,7 @@ router.route('/product').post(function(req, res) {
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files,null,2);
 		var mainImg;
-		/*if(!files.mainImg) {
+		if(!files.mainImg) {
 			res.send("mainImg require");
 			return;
 		}else {
@@ -38,8 +38,7 @@ router.route('/product').post(function(req, res) {
 		if (err) {
 			res.send('parse error: ' + err);
 			return;
-		} */
-		console.log(fields.name);
+		} 
 		var product = new Product({
 			name:fields.name,
 			title:fields.title,
