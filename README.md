@@ -5,7 +5,6 @@
 * server:express4,restful,对framework7做了一定的兼容<br>
 * db:mongo3,mongoose.<br>
 * loader:requirejs<br>
-
-preview:
+preview:<br>
 ![](http://7xqhly.com1.z0.glb.clouddn.com/4.gif)
 
